@@ -77,7 +77,7 @@ await TrySmarter
 ```
 
 ## How I can make it return a different value from the catch block
-Just **return** your exception in any of the catch methods and ToResult method will throw it.
+Just **return** your value in any of the catch methods and ToResult method will throw it.
 
 Here's how: 
 
