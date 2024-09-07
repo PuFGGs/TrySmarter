@@ -28,6 +28,17 @@ public sealed class ExampleUsageTests
     }
 
     [Fact]
+    public async Task ExampleUsage_ThrowsDifferentException()
+    {
+        // Act &Assert
+        await Assert.ThrowsAsync<InvalidOperationException>(async () => await TrySmarter
+            .TryAsync(() => GetNumberAsync(true))
+            .CatchAsync<int, ArgumentException>(async e =>
+                new InvalidOperationException("Test exception from CatchAsync<int, ArgumentException>"))
+            .ToResultAsync());
+    }
+
+    [Fact]
     public async Task ExampleUsage_SuccessfulExecution_ReturnsResult2()
     {
         // Act
