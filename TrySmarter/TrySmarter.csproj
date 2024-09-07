@@ -14,6 +14,7 @@
         <PackageReadmeFile>README.md</PackageReadmeFile>
         <PackageLicenseUrl>https://github.com/PuFGGs/TrySmarter/blob/master/LICENSE</PackageLicenseUrl>
         <PackageLicense>LICENSE</PackageLicense>
+        <Version>1.0.1</Version>
     </PropertyGroup>
 
     <ItemGroup>

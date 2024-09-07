@@ -1,4 +1,5 @@
 using OneOf;
+using OneOf.Types;
 using TrySmarter.Entities;
 using TrySmarter.Interfaces;
 
@@ -6,7 +7,9 @@ namespace TrySmarter;
 
 public static class TrySmarter
 {
-    public static ICatchable<TResult, Exception> Try<TResult>(Func<TResult> action)
+    #region With Return Type
+
+    public static ICatchable<TResult, Exception> Try<TResult>(this Func<TResult> action)
     {
         try
         {
@@ -24,7 +27,7 @@ public static class TrySmarter
         }
     }
 
-    public static async Task<ICatchable<TResult, Exception>> TryAsync<TResult>(Func<Task<TResult>> action)
+    public static async Task<ICatchable<TResult, Exception>> TryAsync<TResult>(this Func<Task<TResult>> action)
     {
         try
         {
@@ -41,4 +44,48 @@ public static class TrySmarter
             };
         }
     }
+
+    #endregion
+
+    #region Without Return Type
+
+    public static ICatchable<Unit, Exception> Try(this Action action)
+    {
+        try
+        {
+            action();
+            return new Catchable<Unit>
+            {
+                Result = Unit.Value
+            };
+        }
+        catch (Exception e)
+        {
+            return new Catchable<Unit>
+            {
+                Result = e
+            };
+        }
+    }
+
+    public static async Task<ICatchable<Unit, Exception>> TryAsync(this Func<Task> action)
+    {
+        try
+        {
+            await action();
+            return new Catchable<Unit>
+            {
+                Result = Unit.Value
+            };
+        }
+        catch (Exception e)
+        {
+            return new Catchable<Unit>
+            {
+                Result = e
+            };
+        }
+    }
+
+    #endregion
 }

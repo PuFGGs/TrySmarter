@@ -60,5 +60,13 @@ public static class CatchSmarter
         return CatchAsync<TResult, Exception>(catchableTask, onError);
     }
 
+    public static Task<ICatchable<Unit, Exception>> CatchAsync<TException>(
+        this Task<ICatchable<Unit, Exception>> catchableTask,
+        Func<TException, Task<OneOf<Unit, Exception>>> onError)
+        where TException : Exception
+    {
+        return CatchAsync<Unit, TException>(catchableTask, onError);
+    }
+
     #endregion
 }
