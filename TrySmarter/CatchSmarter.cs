@@ -4,7 +4,7 @@ using TrySmarter.Interfaces;
 
 namespace TrySmarter;
 
-public static class CatchSmarterAsync
+public static class CatchSmarter
 {
     #region Catch
 
@@ -58,30 +58,6 @@ public static class CatchSmarterAsync
         Func<Exception, Task<OneOf<TResult, Exception>>> onError)
     {
         return CatchAsync<TResult, Exception>(catchableTask, onError);
-    }
-
-    #endregion
-
-    #region ToResult
-
-    public static async Task<TResult> ToResultAsync<TResult>(this Task<ICatchable<TResult, Exception>> catchableTask)
-    {
-        var catchable = await catchableTask;
-
-        var result = catchable.Result.Match(
-            r => r,
-            e => throw e
-        );
-
-        return result;
-    }
-
-    public static TResult ToResult<TResult>(this ICatchable<TResult, Exception> catchable)
-    {
-        return catchable.Result.Match(
-            r => r,
-            e => throw e
-        );
     }
 
     #endregion
