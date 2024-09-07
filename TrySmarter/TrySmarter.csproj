@@ -7,14 +7,22 @@
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Title>TrySmarter</Title>
         <Authors>Doruk Akin</Authors>
-        <Description>Improved readablitity for try catches and removed try context for better dev experiance. </Description>
+        <Description>Improved readablitity for try catches and removed try context for better dev experiance.</Description>
         <RepositoryUrl>https://github.com/PuFGGs/TrySmarter</RepositoryUrl>
         <RepositoryType>GitHub</RepositoryType>
         <PackageTags>Try, catch</PackageTags>
+        <PackageReadmeFile>README.md</PackageReadmeFile>
+        <PackageLicenseUrl>https://github.com/PuFGGs/TrySmarter/blob/master/LICENSE</PackageLicenseUrl>
+        <PackageLicense>LICENSE</PackageLicense>
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="OneOf" Version="3.0.271" />
+        <None Include="..\README.md" Pack="true" PackagePath="\"/>
+        <None Include="..\LICENSE" Pack="true" PackagePath="\"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="OneOf" Version="3.0.271"/>
     </ItemGroup>
 
 </Project>
